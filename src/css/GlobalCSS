@@ -1,0 +1,4 @@
+// src/main.jsx
+import "./styles.css"; // import your CSS file
+
+// SAMPLE CODE ok
