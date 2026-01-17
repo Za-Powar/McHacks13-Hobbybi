@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { faker } = require('@faker-js/faker');
 
+const topicList = ['Outdoors', 'Sports', 'Shopping', 'Cooking', 'Watch Party'];
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -30,8 +32,21 @@ const userSchema = new mongoose.Schema({
   createdAt: { 
     type: Date, 
     default: Date.now 
+  },
+  topics: {
+    type: [String],  // Array of strings
+    default: []      // Empty array by default
+  },
+  likedProjects: {
+    type: [String],  // Array of strings (interested projects)
+    default: []
+  },
+  unlikedProjects: {
+    type: [String],  // Array of strings (not interested projects)
+    default: []
   }
 });
+
 // 2. CREATE THE MODEL from the schema
 const User = mongoose.model('User', userSchema);
 
@@ -47,8 +62,11 @@ async function generateMockUsers(count = 50) {
       profile: {
         firstName: faker.person.firstName(),
         lastName: faker.person.lastName(),
-        age: faker.number.int({ min: 18, max: 80 })
-      }
+        age: faker.number.int({ min: 17, max: 40 })
+      },
+      topics: faker.helpers.arrayElements(topicList, faker.number.int({ min: 0, max: topicList.length })), // Random list of random topics
+      /*likedProjects: , THEY WILL BE FETCHED FROM THE DATABASE
+      unlikedProjects:*/
     });
   }
 
