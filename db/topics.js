@@ -32,6 +32,21 @@ const topicSchema = new mongoose.Schema({
     ],
     default: []  // ← Add this for empty array default
   },
+  nonMembers: {
+    type: [  // Array of subdocuments
+      {
+        userID: {
+          type: String,
+          required: true
+        },
+        joinedAt: {
+          type: Date,
+          default: Date.now
+        }
+      }
+    ],
+    default: []  // ← Add this for empty array default
+  },
   description: {
     type: String,
     default: ""
@@ -51,6 +66,7 @@ async function generateTopics() {
         name: 'Outdoors',
         description: 'Hiking, Going to the beach, or even good old biking and roller skating. Come if you are craving for some funn under the sun!'
         //members: We'll fetch them from the database
+        //nonMembers: Cannot include a member
     });
 
     topics.push({
@@ -58,6 +74,7 @@ async function generateTopics() {
         name: 'Sports',
         description: 'Follow this if you want to release some energy with other people at the gym, playing football, etc.'
         //members: We'll fetch them from the database
+        //nonMembers: Cannot include a member
     });
 
     topics.push({
@@ -65,6 +82,7 @@ async function generateTopics() {
         name: 'Cooking',
         description: "Is there a foreign dish you'd like to make, but you need the help of people more knowledgeable than you? Ask here!"
         //members: We'll fetch them from the database
+        //nonMembers: Cannot include a member
     })
 
     topics.push({
@@ -72,6 +90,7 @@ async function generateTopics() {
         name: 'Party',
         description: 'Party rock is in the house tonight! Everybody just have a good time!!!'
         //members: We'll fetch them from the database
+        //nonMembers: Cannot include a member
     })
 
     topics.push({
@@ -79,6 +98,7 @@ async function generateTopics() {
         name: 'Watch Party',
         description: 'A new season of your favorite show just came out, but you have no one to watch it with? This is the place for you'
         //members: We'll fetch them from the database
+        //nonMembers: Cannot include a member
     })
 
     try {
