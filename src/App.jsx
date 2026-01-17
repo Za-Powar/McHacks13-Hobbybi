@@ -3,7 +3,8 @@ import { LoginButton } from "./components/LoginButton";
 import { LogoutButton } from "./components/LogoutButton";
 
 function App() {
-  return <h1>Hello Hobbybies</h1>;
+  
+
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) return <div>Loading...</div>;
