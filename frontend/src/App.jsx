@@ -10,7 +10,7 @@ function App() {
 
   if (isLoading) return <div style={{ textAlign: "center", marginTop: "50px" }}>Loading...</div>;
 
-  // For testing, all logged-in users go to signup first
+
   const hasProfile = false;
 
   return (
