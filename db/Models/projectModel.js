@@ -5,14 +5,6 @@ const projectSchema = new mongoose.Schema({
     type: String, 
     required: true, 
   },
-  members: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []  // ← Add this for empty array default
-  },
-  nonMembers: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []  // ← Add this for empty array default
-  },
   createdAt: { 
     type: Date, 
     default: Date.now 
@@ -20,6 +12,14 @@ const projectSchema = new mongoose.Schema({
   description: {
     type: String,
     default: "Come join my activity!"
+  },
+  topic: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true  // ← Add this for empty array default
+  },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
   }
 });
 

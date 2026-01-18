@@ -6,21 +6,9 @@ const topicSchema = new mongoose.Schema({
     required: true, 
     unique: true 
   },
-  members: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []  // ← Add this for empty array default
-  },
-  nonMembers: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []  // ← Add this for empty array default
-  },
   description: {
     type: String,
     default: ""
-  },
-  projects: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []
   }
 });
 

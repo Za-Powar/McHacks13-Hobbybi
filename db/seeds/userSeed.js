@@ -1,25 +1,45 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { faker } = require('@faker-js/faker');
+
 const User = require('../Models/userModel');
+const Topic = require('../Models/topicModel');
+const Project = require('../Models/projectModel');
 
 mongoose.connect(process.env.MONGODB_URI);
+
+async function getTopicId(topicName) {
+  const topic = await Topic.findOne({ name: topicName });
+  return topic ? topic._id : null;
+}
+
+async function getProjectId(projectName) {
+  const project = await Project.findOne({ name: projectName });
+  return project ? project._id : null;
+}
 
 async function generateUsers(count = 0) {
 
     await User.deleteMany({});
-  const users = [];
+    const users = [];
 
-  users.push({
-      email: 'yann.takougangmbuko@mail.mcgill.ca',
-      username: 'theJojoFan',
-      password: await bcrypt.hash('password123', 10),
-      profile: {
+    users.push({
+        email: 'yann.takougangmbuko@mail.mcgill.ca',
+        username: 'jojoFan',
+        password: await bcrypt.hash('password123', 10),
+        profile: {
         firstName: 'Yann Cesar',
         lastName: 'Takougang Mbuko',
         age: 20
-      },
-      avatar: 'https://www.gravatar.com/avatar/?d=identicon'
+        },
+        avatar: 'https://www.gravatar.com/avatar/?d=identicon',
+        createdAt: faker.date.past(),
+        topics: await Promise.all([
+            getTopicId('Outdoors'),
+            getTopicId('Robotics'),
+            getTopicId('Watch Party'),
+        ])
     });
 
     users.push({
@@ -31,7 +51,12 @@ async function generateUsers(count = 0) {
         lastName: 'Temzi',
         age: 80
       },
-      //topics: faker.helpers.arrayElements(topicList, faker.number.int({ min: 0, max: topicList.length })), // Random list of random topics
+      createdAt: faker.date.past(),
+      topics: await Promise.all([
+            getTopicId('Outdoors'),
+            getTopicId('Sports'),
+            getTopicId('Party'),
+        ])
     });
 
     users.push({
@@ -43,6 +68,14 @@ async function generateUsers(count = 0) {
         lastName: 'Su',
         age: 20
       },
+      createdAt: faker.date.past(),
+      topics: await Promise.all([
+            getTopicId('Outdoors'),
+            getTopicId('Robotics'),
+            getTopicId('Watch Party'),
+            getTopicId('Sports'),
+            getTopicId('Party'),
+        ]),
     });
 
     users.push({
@@ -54,6 +87,45 @@ async function generateUsers(count = 0) {
         lastName: 'V. Reddy',
         age: 20
       },
+      createdAt: faker.date.past()
+    });
+
+    users.push({
+      email: 'nadeem.samaali@mail.mcgill.ca',
+      username: 'DDRevolution',
+      password: await bcrypt.hash('password123', 10),
+      profile: {
+        firstName: 'Nadeem',
+        lastName: 'Samaali',
+        age: 20
+      },
+      createdAt: faker.date.past(),
+      topics: await Promise.all([
+            getTopicId('Outdoors'),
+            getTopicId('Robotics'),
+            getTopicId('Watch Party'),
+            getTopicId('Sports'),
+            getTopicId('Party'),
+        ]),
+    });
+
+    users.push({
+      email: 'dragos.bajanica@mail.mcgill.ca',
+      username: 'THEengineer',
+      password: await bcrypt.hash('password123', 10),
+      profile: {
+        firstName: 'Dragos',
+        lastName: 'Bajanica',
+        age: 20
+      },
+      createdAt: faker.date.past(),
+      topics: await Promise.all([
+            getTopicId('Outdoors'),
+            getTopicId('Robotics'),
+            getTopicId('Watch Party'),
+            getTopicId('Sports'),
+            getTopicId('Party'),
+        ]),
     });
 
   //Creates additional random users if desired
@@ -67,6 +139,7 @@ async function generateUsers(count = 0) {
         lastName: faker.person.lastName(),
         age: faker.number.int({ min: 17, max: 40 })
       },
+      createdAt: faker.date.past()
     });
   }
 

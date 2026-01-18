@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   },
   username: { 
     type: String, 
-    required: true, 
+    required: true,
+    unique: true 
   },
   password: { 
     type: String, 
@@ -26,6 +27,18 @@ const userSchema = new mongoose.Schema({
   createdAt: { 
     type: Date, 
     default: Date.now 
+  },
+  topics: {
+    type: [mongoose.Schema.Types.ObjectId],
+    default: []  // ← Add this for empty array default
+  },
+  projects: {
+    type: [mongoose.Schema.Types.ObjectId],
+    default: []  // ← Add this for empty array default
+  },
+  university: {
+    type: String,
+    default: 'McGill University'
   }
 });
 
