@@ -1,5 +1,6 @@
 // src/webpages/swipe.jsx
 import { useNavigate } from 'react-router-dom';
+
 function Swipe() {
       const navigate = useNavigate();
   return (
@@ -8,6 +9,7 @@ function Swipe() {
         <button onClick={() => navigate('/home')}>
             home
         </button>
+
     </div>
   );
 }
