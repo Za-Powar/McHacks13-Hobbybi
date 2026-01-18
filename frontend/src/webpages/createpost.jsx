@@ -1,10 +1,12 @@
-// src/webpages/myprofile.jsx
+// src/webpages/createpost.jsx
 import { useNavigate } from 'react-router-dom';
-function Myprofile() {
+
+function Createpost() {
+  
     const navigate = useNavigate();
   return (
     <div>
-        Myprofile
+        Create Post
         <button onClick={() => navigate('/home')}>
             home
         </button>
@@ -12,4 +14,4 @@ function Myprofile() {
   );
 }
 
-export default Myprofile;
+export default Createpost;
