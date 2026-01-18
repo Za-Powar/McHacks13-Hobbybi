@@ -1,5 +1,3 @@
-// src/App.jsx
-import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./components/LoginButton";
@@ -14,7 +12,7 @@ function App() {
 
   if (isLoading) return <div style={{ textAlign: "center", marginTop: "50px" }}>Loading...</div>;
 
-  // For testing, all logged-in users go to signup first
+
   const hasProfile = false;
 
   return (

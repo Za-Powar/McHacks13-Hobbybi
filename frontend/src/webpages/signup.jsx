@@ -1,4 +1,4 @@
-// src/webpages/signup.jsx
+
 import React, { useState } from "react";
 import "../styles/signup-style.css";
 
@@ -10,6 +10,7 @@ function Signup() {
     age: "",
     interests: "",
     email: "",
+    university: "",
     photo: null,
   });
 
@@ -73,6 +74,15 @@ function Signup() {
           type="email"
           name="email"
           value={formData.email}
+          onChange={handleChange}
+          required
+        />
+
+        <label>University:</label>
+        <input
+          type="university"
+          name="university"
+          value={formData.university}
           onChange={handleChange}
           required
         />
