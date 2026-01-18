@@ -1,7 +1,5 @@
-
 import React, { useState } from "react";
 import "../styles/signup-style.css";
-
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -30,70 +28,34 @@ function Signup() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
-      <h2 style={{ textAlign: "center" }}>Create Your Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label>First Name:</label>
-        <input
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          required
-        />
+    <div className="signup-page">  {/* Outer container applied */}
+      <div className="login-form-wrapper">
+        <h2>Create Your Profile</h2>
+        <form onSubmit={handleSubmit}>
+          <label>First Name:</label>
+          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
 
-        <label>Last Name:</label>
-        <input
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          required
-        />
+          <label>Last Name:</label>
+          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
 
-        <label>Age:</label>
-        <input
-          type="number"
-          name="age"
-          value={formData.age}
-          onChange={handleChange}
-          required
-        />
+          <label>Age:</label>
+          <input type="number" name="age" value={formData.age} onChange={handleChange} required />
 
-        <label>Interests:</label>
-        <input
-          type="text"
-          name="interests"
-          value={formData.interests}
-          onChange={handleChange}
-          placeholder="e.g., coding, art"
-        />
+          <label>Interests:</label>
+          <input type="text" name="interests" value={formData.interests} onChange={handleChange} placeholder="e.g., coding, art" />
 
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+          <label>Email:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
 
-        <label>University:</label>
-        <input
-          type="university"
-          name="university"
-          value={formData.university}
-          onChange={handleChange}
-          required
-        />
+          <label>University:</label>
+          <input type="text" name="university" value={formData.university} onChange={handleChange} required />
 
-        <label>Profile Photo:</label>
-        <input type="file" name="photo" onChange={handleChange} />
+          <label>Profile Photo:</label>
+          <input type="file" name="photo" onChange={handleChange} />
 
-        <button type="submit" style={{ marginTop: "10px", padding: "8px 12px" }}>
-          Submit
-        </button>
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
