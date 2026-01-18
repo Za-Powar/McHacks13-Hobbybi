@@ -4,7 +4,7 @@
   justify-content: flex-end; /* pushes form to the right */
   align-items: flex-start;   /* keeps form at top */
   padding: 50px 100px 0 20px; /* top, right, bottom, left */
-  background-color: #f0f0f0;
+  background-color: #492dd6;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -27,7 +27,7 @@
 
   /* Shift to the right */
   margin-left: auto;   /* pushes it fully right */
-  margin-right: 50px;  /* space from right edge */
+  margin-right: 250px;  /* space from right edge */
 }
 
 /* Heading */
