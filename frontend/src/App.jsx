@@ -6,7 +6,6 @@ import Signup from "./webpages/signup.jsx";
 import Welcome from "./webpages/welcome.jsx";
 import Home from "./webpages/home.jsx"
 import Myprofile from "./webpages/myprofile.jsx";
-import Messages from "./webpages/messages.jsx";
 import Swipe from "./webpages/swipe.jsx";
 import Createpost from "./webpages/createpost.jsx";
 
@@ -61,12 +60,6 @@ function App() {
         <Route
         path="/home/swipe"
         element={isAuthenticated ? <Swipe /> : <Navigate to="/" />}
-        />
-
-        {/* Messages page */}
-        <Route
-        path="/home/messages"
-        element={isAuthenticated ? <Messages /> : <Navigate to="/" />}
         />
 
         {/* Create post page */}

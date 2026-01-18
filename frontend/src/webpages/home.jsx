@@ -13,9 +13,6 @@ function Home() {
         <button onClick={() => navigate('/home/swipe')}>
             Swipe
         </button>
-        <button onClick={() => navigate('/home/messages')}>
-            Messages
-        </button>
         <button onClick={() => navigate('/home/createpost')}>
             Create Post
         </button>
