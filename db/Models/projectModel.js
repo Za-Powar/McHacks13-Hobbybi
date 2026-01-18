@@ -13,12 +13,18 @@ const projectSchema = new mongoose.Schema({
     type: String,
     default: "Come join my activity!"
   },
-  topic: {
+  topic: [{
     type: mongoose.Schema.Types.ObjectId,
-    required: true  // ← Add this for empty array default
-  },
+    ref: "Topic",
+    required: true
+  }],
+  images: [{
+    type: String,
+    default: []
+  }],
   creator: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true
   }
 });
