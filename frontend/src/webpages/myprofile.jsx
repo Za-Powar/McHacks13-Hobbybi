@@ -7,11 +7,11 @@ function Myprofile() {
 
   // Example user data
   const userProfile = {
-    name: "Sharley R.",
+    name: "Harini Reddy",
     photo: "https://via.placeholder.com/150",
-    contact: "sharley@example.com",
-    age: 17,
-    university: "University of Toronto",
+    contact: "reddyharini0707@gmail.com",
+    age: 21,
+    university: "Mcgill University",
     interests: "Robotics, Coding, Music",
   };
 
