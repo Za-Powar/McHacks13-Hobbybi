@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../styles/signup-style.css";
+import { useNavigate } from 'react-router-dom';
 
-function Signup() {
+function Signup({ setHasProfile }) {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,6 +28,8 @@ function Signup() {
     e.preventDefault();
     console.log("Form submitted:", formData);
     alert("Profile submitted! Check console.");
+    navigate('/home');
+    setHasProfile(true);
   };
 
   return (
