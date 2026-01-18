@@ -1,13 +1,9 @@
-// src/App.jsx
-import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoginButton } from "./components/LoginButton";
 import { LogoutButton } from "./components/LogoutButton";
 import Signup from "./webpages/signup.jsx";
-
-// Dummy Home page for testing
-const Home = () => <h2 style={{ textAlign: "center", marginTop: "50px" }}>Welcome Home!</h2>;
+import Welcome from "./webpages/welcome.jsx";
+import Home from "./webpages/home.jsx"
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -22,8 +18,9 @@ function App() {
       {/* Show logout button if logged in */}
       {isAuthenticated && <LogoutButton />}
 
-      <Routes>
-        {/* Landing page */}
+      <Routes>       
+
+        {/* Welcome page */}
         <Route
           path="/"
           element={
@@ -31,14 +28,8 @@ function App() {
               ? hasProfile
                 ? <Navigate to="/home" />
                 : <Navigate to="/signup" />
-              : <LoginButton />
+              : <Welcome />
           }
-        />
-
-        {/* Signup page */}
-        <Route
-          path="/signup"
-          element={isAuthenticated ? <Signup /> : <Navigate to="/" />}
         />
 
         {/* Home page */}
@@ -47,8 +38,17 @@ function App() {
           element={isAuthenticated ? <Home /> : <Navigate to="/" />}
         />
 
+        {/* Signup page */}
+        <Route
+          path="/signup"
+          element={isAuthenticated ? <Signup /> : <Navigate to="/" />}
+        />
+
+        
+
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
+
       </Routes>
     </div>
   );
