@@ -1,18 +1,24 @@
-// src/webpages/welcome.jsx
 import { LoginButton } from "../components/LoginButton";
+import "../styles/welcome-style.css";
 
 function Welcome() {
   return (
-    <div>
-        Welcome to Hobbybi, 
-        this is where you can find people who have similar 
-        interests as you to find activities to do together. 
-        Start by logging in and creating your profile. Then,
-        create your first post about an activity you'd like 
-        to find friends to do with or head over to the swipe 
-        page to start looking at other people's post and find
-        activities that catch your eye.
-        <LoginButton/>
+    <div className="welcome-page">
+      <div className="welcome-card">
+        <h1 className="welcome-title">Welcome to Hobbybi!</h1>
+        <p className="welcome-text">
+          Hobbybi is your one stop destination to connect with people who share your interests and find activities to do together.
+        </p>
+        <p className="welcome-text">
+          Start by logging in and creating your profile. 
+        </p>
+        <p className="welcome-text">
+          Then, create your first post about an activity you'd like to do with friends or head over to the swipe page to explore other people's posts and find activities that catch your eye.
+        </p>
+        <div className="login-button-wrapper">
+          <LoginButton />
+        </div>
+      </div>
     </div>
   );
 }
