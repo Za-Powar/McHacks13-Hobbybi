@@ -1,18 +1,18 @@
 /* Outer container: full page */
 .signup-page {
   display: flex;
-  justify-content: flex-end; /* pushes form to the right */
-  align-items: flex-start;   /* keeps form at top */
-  padding: 50px 100px 0 20px; /* top, right, bottom, left */
-  background-color: #f0f0f0;
+  justify-content: flex-end;  /* push form to the right */
+  align-items: flex-start;    /* keep form at top */
+  padding: 50px;              /* padding all around */
+  background-color: #b3ecf0;
   min-height: 100vh;
   box-sizing: border-box;
+  margin-left: 375px; 
 }
 
-/* Form box — wide rectangle */
+/* Form box — right-aligned card */
 .login-form-wrapper {
-  width: 100%;
-  max-width: 1200px;      /* makes it wide (3x) */
+  width: 450px;               /* fixed width makes it easier to see movement */
   padding: 50px;
   border-radius: 16px;
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
@@ -25,9 +25,7 @@
   flex-direction: column;
   gap: 18px;
 
-  /* Shift to the right */
-  margin-left: auto;   /* pushes it fully right */
-  margin-right: 50px;  /* space from right edge */
+  margin-left: 0px;          
 }
 
 /* Heading */
@@ -49,7 +47,7 @@
 
 /* Inputs */
 .login-form-wrapper input {
-  padding: 18px;
+  padding: 15px;
   font-size: 1.3rem;
   border: 1px solid #555;
   border-radius: 8px;
@@ -59,7 +57,7 @@
 
 /* Submit button */
 .login-form-wrapper button {
-  padding: 20px;
+  padding: 18px;
   font-size: 1.5rem;
   background-color: #007bff;
   color: white;
