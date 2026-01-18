@@ -1,81 +1,77 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/profile-style.css"; // your CSS file
+import { useEffect } from "react";
+import "../styles/myprofile.css";
 
 function Myprofile() {
   const navigate = useNavigate();
 
-  // Example user data
-  const userProfile = {
-    name: "Sharley R.",
-    photo: "https://via.placeholder.com/150",
-    contact: "sharley@example.com",
-    age: 17,
-    university: "University of Toronto",
-    interests: "Robotics, Coding, Music",
-  };
+  const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+  const profile = JSON.parse(
+    localStorage.getItem(`profile:${user?.id}`) || "null"
+  );
 
-  const [photo, setPhoto] = useState(userProfile.photo);
-
-  // Drag & drop handler
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = () => setPhoto(reader.result);
-      reader.readAsDataURL(file);
+  useEffect(() => {
+    if (!user) {
+      navigate("/login", { replace: true });
+      return;
     }
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = () => setPhoto(reader.result);
-      reader.readAsDataURL(file);
+    if (!profile) {
+      navigate("/createprofile", { replace: true });
     }
-  };
+  }, [user, profile, navigate]);
+
+  // ✅ Show something instead of blank while redirecting
+  if (!user) return <div className="profilePage">Not logged in…</div>;
+  if (!profile) return <div className="profilePage">Loading profile…</div>;
 
   return (
-    <div className="profile-page">
-      <div className="profile-card">
-        {/* Profile Name */}
-        <h2 className="profile-name">{userProfile.name}</h2>
-
-        {/* Profile Picture Drag & Drop */}
-        <div
-          className="profile-picture-wrapper"
-          onDrop={handleDrop}
-          onDragOver={(e) => e.preventDefault()}
-        >
-          <img
-            src={photo || "https://via.placeholder.com/150"}
-            alt="Profile"
-            className="profile-picture"
-          />
+    <div className="profilePage">
+      <header className="profileTop">
+        <div>
+          <h1 className="profileTitle">My Profile</h1>
+          <p className="profileSubtitle">This is what you saved in your form.</p>
         </div>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="profile-upload-input"
-        />
-
-        {/* Profile Info */}
-        <div className="profile-info">
-          <p><strong>Contact Point:</strong> {userProfile.contact}</p>
-          <p><strong>Age:</strong> {userProfile.age}</p>
-          <p><strong>University:</strong> {userProfile.university}</p>
-          <p><strong>Interests:</strong> {userProfile.interests}</p>
-        </div>
-
-        {/* Home Button */}
-        <button className="profile-home-btn" onClick={() => navigate("/home")}>
-          Home
+        <button className="btnGhost" onClick={() => navigate("/home")}>
+          ← Back to Home
         </button>
-      </div>
+      </header>
+
+      <main className="profileGrid">
+        <section className="profileCard">
+          <div className="avatar">👤</div>
+          <h2 className="profileName">{profile.name || "No name"}</h2>
+          <p className="profileMeta">{profile.university || "No university"}</p>
+
+          <div className="pillRow">
+            {(profile.interests || "")
+              .split(",")
+              .map((x) => x.trim())
+              .filter(Boolean)
+              .map((tag) => (
+                <span className="pill" key={tag}>{tag}</span>
+              ))}
+          </div>
+
+          <div className="profileActions">
+            <button className="btnPrimary" onClick={() => navigate("/createprofile")}>
+              Edit Profile
+            </button>
+            <button className="btnSecondary" onClick={() => navigate("/home")}>
+              Home
+            </button>
+          </div>
+        </section>
+
+        <section className="profilePanel">
+          <h3 className="panelTitle">Saved Data</h3>
+          <div className="miniNote">
+            Name: {profile.name || "-"} <br />
+            University: {profile.university || "-"} <br />
+            Interests: {profile.interests || "-"}
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
