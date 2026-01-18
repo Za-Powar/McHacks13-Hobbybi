@@ -1,22 +1,68 @@
 import { LoginButton } from "../components/LoginButton";
-import "../styles/welcome-style.css";
+import "../styles/welcome.css";
 
 function Welcome() {
   return (
     <div className="welcome-page">
       <div className="welcome-card">
-        <h1 className="welcome-title">Welcome to Hobbybi!</h1>
-        <p className="welcome-text">
-          Hobbybi is your one stop destination to connect with people who share your interests and find activities to do together.
+        <h1 className="welcome-title">Welcome to Hobbybi</h1>
+
+        <p className="welcome-subtitle">
+          Find people at your uni who share your interests, then team up and build
+          something together.
         </p>
-        <p className="welcome-text">
-          Start by logging in and creating your profile. 
+
+        <p className="welcome-value">
+          Built for students who want to <strong>build</strong>, not scroll.
         </p>
-        <p className="welcome-text">
-          Then, create your first post about an activity you'd like to do with friends or head over to the swipe page to explore other people's posts and find activities that catch your eye.
-        </p>
-        <div className="login-button-wrapper">
+
+        <div className="welcome-cta">
           <LoginButton />
+        </div>
+
+        <p className="welcome-note">
+          Create a profile • Match with teammates • Chat • Build
+        </p>
+
+        <div className="welcome-steps">
+          <div className="welcome-step">
+            <span className="welcome-step-num">1</span>
+            <p className="welcome-step-text">Create your profile</p>
+          </div>
+
+          <div className="welcome-step">
+            <span className="welcome-step-num">2</span>
+            <p className="welcome-step-text">Swipe on projects & people</p>
+          </div>
+
+          <div className="welcome-step">
+            <span className="welcome-step-num">3</span>
+            <p className="welcome-step-text">Chat & start building</p>
+          </div>
+        </div>
+
+        <div className="welcome-features">
+          <div className="welcome-feature">
+            <div className="welcome-icon">✓</div>
+            <h3>Swipe-like matching</h3>
+            <p>Quick yes/no on projects and teammates.</p>
+          </div>
+
+          <div className="welcome-feature">
+            <div className="welcome-icon">💬</div>
+            <h3>Group chat</h3>
+            <p>Start a group with the people you want to work with.</p>
+          </div>
+
+          <div className="welcome-feature">
+            <div className="welcome-icon">⚡</div>
+            <h3>Move fast</h3>
+            <p>Go from idea → team → build in days, not weeks.</p>
+          </div>
+        </div>
+
+        <div className="welcome-footer">
+          Only students • No ads • No recruiters • No spam
         </div>
       </div>
     </div>

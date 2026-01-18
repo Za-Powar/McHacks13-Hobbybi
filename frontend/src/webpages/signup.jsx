@@ -12,7 +12,7 @@ function Signup({ setHasProfile }) {
     interests: "",
     email: "",
     university: "",
-    photo: null,
+    profilePicUrl: "",
   });
 
   const handleChange = (e) => {
@@ -24,13 +24,46 @@ function Signup({ setHasProfile }) {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Profile submitted! Check console.");
-    navigate('/home');
-    setHasProfile(true);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const interestsArray = formData.interests
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+
+  const payload = {
+    firstName: formData.firstName,
+    lastName: formData.lastName,
+    age: Number(formData.age),
+    email: formData.email,
+    university: formData.university,
+    interests: interestsArray,
+    profilePicUrl: formData.profilePicUrl
   };
+
+  try {
+  const res = await fetch("/api/users/profile", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+
+    const data = await res.json();
+
+    if (!data.success) {
+      alert("Profile save failed: " + (data.error || "unknown error"));
+      return;
+    }
+
+    setHasProfile(true);
+    navigate("/home");
+  } catch (err) {
+    alert("Backend not reachable. Is backend running on http://localhost:5000 ?");
+  }
+};
+
 
   return (
     <div className="signup-page">  {/* Outer container applied */}
@@ -55,8 +88,15 @@ function Signup({ setHasProfile }) {
           <label>University:</label>
           <input type="text" name="university" value={formData.university} onChange={handleChange} required />
 
-          <label>Profile Photo:</label>
-          <input type="file" name="photo" onChange={handleChange} />
+          <label>Profile Photo URL:</label>
+          <input
+            type="text"
+            name="profilePicUrl"
+            value={formData.profilePicUrl}
+            onChange={handleChange}
+            placeholder="https://..."
+          />
+
 
           <button type="submit">Submit</button>
         </form>
