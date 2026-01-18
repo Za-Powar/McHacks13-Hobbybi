@@ -1,8 +1,27 @@
+import { swipes, chats, messages } from "../mockdata.js";
+
 export const swipeUser = (req, res) => {
+  const from = req.user.auth0Id;
   const { to, direction } = req.body;
 
-  // temporary mock logic
-  const match = Math.random() > 0.5;
+  if (!to || !direction) {
+    return res.status(400).json({ success: false, error: "Missing 'to' or 'direction'" });
+  }
 
-  return res.json({ success: true, match });
+  swipes.push({ from, to, direction });
+
+  const otherLikedYou = swipes.some(
+    (s) => s.from === to && s.to === from && s.direction === "like"
+  );
+
+  const match = direction === "like" && otherLikedYou;
+
+  let chatId = null;
+  if (match) {
+    chatId = `chat_${Date.now()}`;
+    chats.push({ id: chatId, members: [from, to], lastMessage: "" });
+    messages[chatId] = [];
+  }
+
+  res.json({ success: true, match, chatId });
 };
