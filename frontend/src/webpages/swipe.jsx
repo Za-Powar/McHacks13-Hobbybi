@@ -13,6 +13,12 @@ function Swipe() {
         description: "Looking for a teammate to help with Arduino sensors.",
         picture: "https://images.unsplash.com/photo-1581092160562-40aa08e78837",
         tags: ["Engineering", "Hardware"]
+      },
+      {
+        title: "Looking for a hackathon team",
+        description: "Participating in McHacks 14!",
+        picture: "https://app.mchacks.ca/static/media/mchacks-martlet-tight.c15b06650e3e5cda2d82cb370481b855.svg",
+        tags: ["Engineering", "Software"]
       }
     ];
     setPosts(mockData);
