@@ -15,8 +15,8 @@ function Swipe() {
   useEffect(() => {
     const mockData = [
       {
-        title: "Looking for skiing buddies",
-        description: "Going to Mont-Tremblant Feb 7th! Come tag along!",
+        title: "Skiing buddies",
+        description: "Going to Mt-Tremblant Feb 7th!",
         picture: "https://cdn.shipskis.com/blog/wp-content/uploads/2024/10/AdobeStock_573567031-1-jpeg.webp",
         tags: ["Sports", "Activities"]
       },
@@ -24,7 +24,7 @@ function Swipe() {
         title: "Looking for a hackathon team",
         description: "Participating in McHacks 14!",
         picture: "https://app.mchacks.ca/static/media/mchacks-martlet-tight.c15b06650e3e5cda2d82cb370481b855.svg",
-        tags: ["Engineering", "Software"]
+        tags: ["Engineering", "Coding"]
       }
     ];
     setPosts(mockData);

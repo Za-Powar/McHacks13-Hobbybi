@@ -2,16 +2,25 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/createpost.css";
 
+const FIXED_TAGS = ["Engineering", "Coding", "Activities", "Cycling", "Gaming", "Sports"];
+
 function Createpost({ posts, setPosts }) {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [tags, setTags] = useState("");
+  const [selectedTags, setSelectedTags] = useState([]);
   const [photo, setPhoto] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  // Convert uploaded file to base64
+  const toggleTag = (tag) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag)
+        ? prev.filter((t) => t !== tag)
+        : [...prev, tag]
+    );
+  };
+
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -28,28 +37,25 @@ function Createpost({ posts, setPosts }) {
       id: Date.now(),
       title,
       description,
-      tags: tags
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter((tag) => tag !== ""),
+      tags: selectedTags,
       photo,
     };
 
-    // Add post to local state
-    setPosts([...(posts || []), newPost]);
 
     // Reset form
     setTitle("");
     setDescription("");
-    setTags("");
+    setSelectedTags([]);
     setPhoto(null);
     document.getElementById("photo-input").value = "";
 
-    // Show success message briefly
+    // Show success message
     setSuccess(true);
+
+    // Redirect after 1 second
     setTimeout(() => {
       setSuccess(false);
-      navigate("/home"); // Redirect to Home page
+      navigate("/home");
     }, 1000);
   };
 
@@ -74,12 +80,20 @@ function Createpost({ posts, setPosts }) {
             required
           />
 
-          <input
-            type="text"
-            placeholder="Tags (e.g. hiking, coding, art)"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
+          {/* Fixed tags */}
+          <div className="tags-selector">
+            {FIXED_TAGS.map((tag) => (
+              <span
+                key={tag}
+                className={`tag selectable ${
+                  selectedTags.includes(tag) ? "selected" : ""
+                }`}
+                onClick={() => toggleTag(tag)}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
           <input
             type="file"
@@ -88,17 +102,12 @@ function Createpost({ posts, setPosts }) {
             onChange={handlePhotoChange}
           />
 
+          {/* Only type="submit", remove onClick */}
           <button type="submit">Add Post</button>
         </form>
 
         {success && (
-          <p
-            style={{
-              color: "green",
-              marginTop: "10px",
-              textAlign: "center",
-            }}
-          >
+          <p style={{ color: "green", marginTop: "10px", textAlign: "center" }}>
             Post added! Redirecting to Home...
           </p>
         )}
