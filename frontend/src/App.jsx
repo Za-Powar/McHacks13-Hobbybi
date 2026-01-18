@@ -1,27 +1,33 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoginButton } from "./components/LoginButton";
 import { LogoutButton } from "./components/LogoutButton";
 import Signup from "./webpages/signup.jsx";
-
-// Dummy Home page for testing
-const Home = () => <h2 style={{ textAlign: "center", marginTop: "50px" }}>Welcome Home!</h2>;
+import Welcome from "./webpages/welcome.jsx";
+import Home from "./webpages/home.jsx"
+import Myprofile from "./webpages/myprofile.jsx";
+import Messages from "./webpages/messages.jsx";
+import Swipe from "./webpages/swipe.jsx";
+import Createpost from "./webpages/createpost.jsx";
 
 function App() {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  const [hasProfile, setHasProfile] = useState(false);
 
   if (isLoading) return <div style={{ textAlign: "center", marginTop: "50px" }}>Loading...</div>;
 
 
-  const hasProfile = false;
+
 
   return (
     <div style={{ padding: "20px" }}>
       {/* Show logout button if logged in */}
       {isAuthenticated && <LogoutButton />}
 
-      <Routes>
-        {/* Landing page */}
+      <Routes>       
+
+        {/* Welcome page */}
         <Route
           path="/"
           element={
@@ -29,14 +35,8 @@ function App() {
               ? hasProfile
                 ? <Navigate to="/home" />
                 : <Navigate to="/signup" />
-              : <LoginButton />
+              : <Welcome />
           }
-        />
-
-        {/* Signup page */}
-        <Route
-          path="/signup"
-          element={isAuthenticated ? <Signup /> : <Navigate to="/" />}
         />
 
         {/* Home page */}
@@ -45,8 +45,39 @@ function App() {
           element={isAuthenticated ? <Home /> : <Navigate to="/" />}
         />
 
+        {/* Signup page */}
+        <Route
+          path="/signup"
+          element={isAuthenticated ? <Signup setHasProfile={setHasProfile} /> : <Navigate to="/" />}
+        />
+
+        {/* My Profile page */}
+        <Route
+        path="/home/myprofile"
+        element={isAuthenticated ? <Myprofile /> : <Navigate to="/" />}
+        />
+
+        {/* Swipe page */}
+        <Route
+        path="/home/swipe"
+        element={isAuthenticated ? <Swipe /> : <Navigate to="/" />}
+        />
+
+        {/* Messages page */}
+        <Route
+        path="/home/messages"
+        element={isAuthenticated ? <Messages /> : <Navigate to="/" />}
+        />
+
+        {/* Create post page */}
+        <Route
+        path="/home/createpost"
+        element={isAuthenticated ? <Createpost /> : <Navigate to="/" />}
+        />
+
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
+
       </Routes>
     </div>
   );
