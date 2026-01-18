@@ -18,10 +18,10 @@ const projectSchema = new mongoose.Schema({
     ref: "Topic",
     required: true
   }],
-  images: [{
+  image: {
     type: String,
-    default: []
-  }],
+    default: ''
+  },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

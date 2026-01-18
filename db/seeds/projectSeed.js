@@ -27,7 +27,7 @@ async function getTopicsId(topicList) {
   return topicsID;
 }
 
-async function createProject(projectName = '', projectDescription = '', projectTopics, userName, imageURLs = []) {
+async function createProject(projectName = '', projectDescription = '', projectTopics, userName, imageURL = '') {
 
     const userID = await getUserId(userName);
 
@@ -42,7 +42,7 @@ async function createProject(projectName = '', projectDescription = '', projectT
         description: projectDescription,
         topic: await getTopicsId(projectTopics),
         creator: userID,
-        images: imageURLs
+        image: imageURL
     });
 
     const user = await User.findByIdAndUpdate(
@@ -66,16 +66,17 @@ async function generateProjects() {
     let description = `I’m planning an early-morning hike to catch the sunrise and enjoy some fresh air. Anyone want to join me on the trail?`;
     let topic = ['Outdoors', 'Sports'];
     let creator = 'Za_powar';
-    let images = [mountainURL, shoreURL];
+    let image = mountainURL;
 
-    await createProject(name, description, topic, creator, images);
+    await createProject(name, description, topic, creator, image);
 
     name = 'Campfire & Stories Night';
     description = `I’m thinking of doing a relaxed campfire night with snacks and stories under the stars. Would anyone be interested in coming along?`;
     topic = ['Outdoors'];
     creator = 'jojoFan';
+    image = shoreURL;
 
-    await createProject(name, description, topic, creator);
+    await createProject(name, description, topic, creator, image);
 
     name = 'Community Soccer Match';
     description = `I’m trying to put together a casual soccer game this weekend, open to all skill levels. Who’s in?`;
@@ -109,7 +110,7 @@ async function generateProjects() {
     description = `I’m thinking about hosting a themed costume party with music and games. Anyone interested?`;
     topic = ['Party'];
     creator = 'genie';
-    image = [tableURL];
+    image = tableURL;
 
     await createProject(name, description, topic, creator, image);
 

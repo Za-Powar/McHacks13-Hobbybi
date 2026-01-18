@@ -22,7 +22,6 @@ async function generateUsers(count = 0) {
     users.push({
         auth0Id: 'user1',
         email: 'yann.takougangmbuko@mail.mcgill.ca',
-        password: await bcrypt.hash('password123', 10),
         username: 'jojoFan',
         profile: {
         firstName: 'Yann Cesar',
@@ -46,7 +45,6 @@ async function generateUsers(count = 0) {
     users.push({
         auth0Id: 'user2',
         email: 'ibrahim.temzi@mail.mcgill.ca',
-        password: await bcrypt.hash('password123', 10),
         username: 'Za_powar',
         profile: {
         firstName: 'Ibrahim',
@@ -68,7 +66,6 @@ async function generateUsers(count = 0) {
     users.push({
         auth0Id: 'user3',
         email: 'elodie.su@mail.mcgill.ca',
-        password: await bcrypt.hash('password123', 10),
         username: 'genie',
         profile: {
         firstName: 'Elodie',
@@ -91,7 +88,6 @@ async function generateUsers(count = 0) {
     users.push({
         auth0Id: 'user4',
       email: 'harini.reddy@mail.mcgill.ca',
-      password: await bcrypt.hash('password123', 10),
       username: 'TemziHaterNo1',
       profile: {
         firstName: 'Harini',
@@ -104,7 +100,6 @@ async function generateUsers(count = 0) {
     users.push({
       auth0Id: 'user5',
       email: 'nadeem.samaali@mail.mcgill.ca',
-      password: await bcrypt.hash('password123', 10),
       username: 'DDRevolution',
       profile: {
         firstName: 'Nadeem',
@@ -124,7 +119,6 @@ async function generateUsers(count = 0) {
     users.push({
       auth0Id: 'user6',
       email: 'dragos.bajanica@mail.mcgill.ca',
-      password: await bcrypt.hash('password123', 10),
       username: 'THEengineer',
       profile: {
         firstName: 'Dragos',
