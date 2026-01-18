@@ -38,7 +38,8 @@ export const upsertProfile = async (req, res) => {
     age,
     email,
     interests,
-    profilePicUrl
+    profilePicUrl,
+    university
   } = req.body;
 
   const updated = await User.findOneAndUpdate(
@@ -48,6 +49,7 @@ export const upsertProfile = async (req, res) => {
       lastName: lastName ?? "",
       age: age ?? null,
       email: email ?? "",
+      university: university ?? "",
       interests: Array.isArray(interests) ? interests : [],
       profilePicUrl: profilePicUrl ?? ""
     },
@@ -56,3 +58,4 @@ export const upsertProfile = async (req, res) => {
 
   res.json({ success: true, user: updated });
 };
+
