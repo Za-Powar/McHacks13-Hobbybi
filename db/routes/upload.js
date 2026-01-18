@@ -5,6 +5,8 @@ const { uploadToCloudinary } = require('../utils/uploadImage');
 const Project = require('../models/Project');
 const User = require('../models/User');
 
+const MaxNbImages = 5;
+
 // Upload project image
 router.post('/project-image', upload.single('image'), async (req, res) => {
   try {
@@ -28,6 +30,41 @@ router.post('/project-image', upload.single('image'), async (req, res) => {
       success: true,
       imageUrl: imageUrl,
       project: project
+    });
+
+  } catch (error) {
+    console.error('Upload error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Upload multiple project images
+router.post('/project-image', upload.array('images', MaxNbImages), async (req, res) => {
+  try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ error: 'No files uploaded' });
+    }
+
+    // Upload all images to Cloudinary
+    const imageUrls = await Promise.all(
+      req.files.map(file =>
+        uploadToCloudinary(file.buffer, 'projects')
+      )
+    );
+
+    // Create project with image URLs
+    const project = await Project.create({
+      name: req.body.name,
+      description: req.body.description,
+      topic: req.body.topic,
+      images: imageUrls,   // 👈 array of Cloudinary URLs
+      creator: req.body.userId
+    });
+
+    res.json({
+      success: true,
+      imageUrls,
+      project
     });
 
   } catch (error) {
