@@ -28,14 +28,16 @@ const userSchema = new mongoose.Schema({
     type: Date, 
     default: Date.now 
   },
-  topics: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []  // ← Add this for empty array default
-  },
-  projects: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []  // ← Add this for empty array default
-  },
+  topics: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Topic",
+    default: []  // default empty array if you don’t provide members
+  }],
+  projects: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+    default: []  // default empty array if you don’t provide members
+  }],
   university: {
     type: String,
     default: 'McGill University'

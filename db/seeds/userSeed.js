@@ -14,11 +14,6 @@ async function getTopicId(topicName) {
   return topic ? topic._id : null;
 }
 
-async function getProjectId(projectName) {
-  const project = await Project.findOne({ name: projectName });
-  return project ? project._id : null;
-}
-
 async function generateUsers(count = 0) {
 
     await User.deleteMany({});
@@ -129,6 +124,7 @@ async function generateUsers(count = 0) {
     });
 
   //Creates additional random users if desired
+  /*
   for (let i = 0; i < count; i++) {
     users.push({
       email: faker.internet.email(),
@@ -142,7 +138,7 @@ async function generateUsers(count = 0) {
       createdAt: faker.date.past()
     });
   }
-
+  */
   await User.insertMany(users);
   console.log(`${users.length} users created!`);
 }
