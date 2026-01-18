@@ -1,30 +1,28 @@
-/* Outer page */
+
 .welcome-page {
   display: flex;
-  justify-content: center; /* centers card horizontally */
-  align-items: center; /* starts content from top */
+  justify-content: center; 
+  align-items: center; 
   min-height: 100vh;
   background: #a1c4fd ;
   padding: 20px;
   box-sizing: border-box;
-  margin-left: 300 px
+  margin-left: 175px
   
 }
 
-/* Card style - full width */
 .welcome-card {
-  width: 100%;            /* fills the container */
-  max-width: 1000px;      /* optional: prevents over-stretch on very large screens */
+  width: 100%;           
+  max-width: 1000px;      
   background-color: #ffffff;
-  padding: 50px 40px;     /* larger padding for full-page feel */
+  padding: 50px 40px;     
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-left: 300 px
 }
 
-/* Title */
+
 .welcome-title {
   font-size: 44px;
   color: #0a0909;
@@ -32,7 +30,7 @@
   font-weight: bold;
 }
 
-/* Paragraph text */
+
 .welcome-text {
   font-size: 24px;
   color: #0a045f;
@@ -40,7 +38,7 @@
   margin-bottom: 25px;
 }
 
-/* Center Login Button */
+
 .login-button-wrapper {
   margin-top: 20px;
 }
