@@ -8,7 +8,7 @@ const Post = ({post}) => {
 
   return (
     <div className='post-card'
-    style={{ backgroundImage: `url(${picture})` }} // <--- THIS LINE IS KEY
+    style={{ backgroundImage: `url(${picture})` }}
     >
         <div className='post-content'>
             <h2 className="post-title">{title}</h2>
