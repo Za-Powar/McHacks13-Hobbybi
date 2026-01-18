@@ -4,7 +4,9 @@ import { LoginButton } from "../components/LoginButton";
 function Welcome() {
   return (
     <div>
-        welcome!
+        Welcome to Hobbybi, 
+        this is where you can find people who have similar 
+        interests as you to 
         <LoginButton/>
     </div>
   );
