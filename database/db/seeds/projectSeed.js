@@ -7,6 +7,7 @@ const { faker } = require('@faker-js/faker');
 
 mongoose.connect(process.env.MONGODB_URI);
 
+//Mock pictures
 const mountainURL = 'https://fastly.picsum.photos/id/28/4928/3264.jpg?hmac=GnYF-RnBUg44PFfU5pcw_Qs0ReOyStdnZ8MtQWJqTfA';
 const shoreURL = 'https://fastly.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s';
 const tableURL = 'https://fastly.picsum.photos/id/304/5000/3324.jpg?hmac=zUrtba_Jg3_6khk8Jo5AuycmUNZvGJeLJ_n72MHwyus';
