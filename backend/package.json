@@ -8,7 +8,12 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "keywords": ["hackathon", "backend", "node", "express"],
+  "keywords": [
+    "hackathon",
+    "backend",
+    "node",
+    "express"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
