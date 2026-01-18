@@ -27,7 +27,7 @@ async function getTopicsId(topicList) {
   return topicsID;
 }
 
-async function createProject(projectName = '', projectDescription = '', projectTopics = ['Outdoors'], userName, imageURLs = []) {
+async function createProject(projectName = '', projectDescription = '', projectTopics, userName, imageURLs = []) {
 
     const userID = await getUserId(userName);
 

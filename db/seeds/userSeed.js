@@ -20,13 +20,19 @@ async function generateUsers(count = 0) {
     const users = [];
 
     users.push({
+        auth0Id: 'user1',
         email: 'yann.takougangmbuko@mail.mcgill.ca',
-        username: 'jojoFan',
         password: await bcrypt.hash('password123', 10),
+        username: 'jojoFan',
         profile: {
         firstName: 'Yann Cesar',
         lastName: 'Takougang Mbuko',
         age: 20
+        },
+        socialMedia: {
+            instagram: 'https://www.instagram.com/taky_stream/',
+            facebook: 'https://www.facebook.com/yann.mbuko/',
+            discord: 'yann_476'
         },
         avatar: 'https://www.gravatar.com/avatar/?d=identicon',
         createdAt: faker.date.past(),
@@ -38,16 +44,21 @@ async function generateUsers(count = 0) {
     });
 
     users.push({
-      email: 'ibrahim.temzi@mail.mcgill.ca',
-      username: 'Za_powar',
-      password: await bcrypt.hash('password123', 10),
-      profile: {
+        auth0Id: 'user2',
+        email: 'ibrahim.temzi@mail.mcgill.ca',
+        password: await bcrypt.hash('password123', 10),
+        username: 'Za_powar',
+        profile: {
         firstName: 'Ibrahim',
         lastName: 'Temzi',
         age: 80
-      },
-      createdAt: faker.date.past(),
-      topics: await Promise.all([
+        },
+        socialMedia: {
+            instagram: 'https://www.instagram.com/ibrahim_temzi/',
+            facebook: 'https://www.facebook.com/ibrahim.temzi.2025',
+        },
+        createdAt: faker.date.past(),
+        topics: await Promise.all([
             getTopicId('Outdoors'),
             getTopicId('Sports'),
             getTopicId('Party'),
@@ -55,16 +66,20 @@ async function generateUsers(count = 0) {
     });
 
     users.push({
-      email: 'elodie.su@mail.mcgill.ca',
-      username: 'genie',
-      password: await bcrypt.hash('password123', 10),
-      profile: {
+        auth0Id: 'user3',
+        email: 'elodie.su@mail.mcgill.ca',
+        password: await bcrypt.hash('password123', 10),
+        username: 'genie',
+        profile: {
         firstName: 'Elodie',
         lastName: 'Su',
         age: 20
-      },
-      createdAt: faker.date.past(),
-      topics: await Promise.all([
+        },
+        socialMedia: {
+            instagram: 'https://www.instagram.com/elod.e_su/'
+        },
+        createdAt: faker.date.past(),
+        topics: await Promise.all([
             getTopicId('Outdoors'),
             getTopicId('Robotics'),
             getTopicId('Watch Party'),
@@ -74,9 +89,10 @@ async function generateUsers(count = 0) {
     });
 
     users.push({
+        auth0Id: 'user4',
       email: 'harini.reddy@mail.mcgill.ca',
-      username: 'TemziHaterNo1',
       password: await bcrypt.hash('password123', 10),
+      username: 'TemziHaterNo1',
       profile: {
         firstName: 'Harini',
         lastName: 'V. Reddy',
@@ -86,9 +102,10 @@ async function generateUsers(count = 0) {
     });
 
     users.push({
+      auth0Id: 'user5',
       email: 'nadeem.samaali@mail.mcgill.ca',
-      username: 'DDRevolution',
       password: await bcrypt.hash('password123', 10),
+      username: 'DDRevolution',
       profile: {
         firstName: 'Nadeem',
         lastName: 'Samaali',
@@ -105,9 +122,10 @@ async function generateUsers(count = 0) {
     });
 
     users.push({
+      auth0Id: 'user6',
       email: 'dragos.bajanica@mail.mcgill.ca',
-      username: 'THEengineer',
       password: await bcrypt.hash('password123', 10),
+      username: 'THEengineer',
       profile: {
         firstName: 'Dragos',
         lastName: 'Bajanica',

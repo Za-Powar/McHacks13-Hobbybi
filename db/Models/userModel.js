@@ -1,24 +1,46 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+  auth0Id: {
+    type: String,
+    unique: true,
+    required: true
+  },
   email: { 
     type: String, 
     required: true, 
-    unique: true 
-  },
-  username: { 
-    type: String, 
-    required: true,
     unique: true 
   },
   password: { 
     type: String, 
     required: true 
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
   profile: {
-    firstName: String,
-    lastName: String,
-    age: Number
+    type: {
+        firstName: String,
+        lastName: String,
+        age: Number
+    },
+    required: true
+  },
+  socialMedia: {
+    instagram: {
+        type: String,
+        default: ""
+    },
+    facebook: {
+        type: String,
+        default: ""
+    },
+    discord: {
+        type: String,
+        default: ""
+    }
   },
   avatar: {
     type: String,  // URL from hosting service
