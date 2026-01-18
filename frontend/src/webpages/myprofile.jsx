@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./profile-style.css"; // your CSS file
+import "../styles/profile-style.css"; // your CSS file
 
 function Myprofile() {
   const navigate = useNavigate();
